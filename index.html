@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Countdown Jahresende 2026</title>
+
+<style>
+:root{
+    --vr-blau:#005CA9;
+    --vr-gelb:#FFCC00;
+    --vr-hell:#F4F8FC;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg,var(--vr-blau),#003f75);
+    padding:30px;
+}
+
+.countdown-box{
+    max-width:1100px;
+    margin:auto;
+    background:#fff;
+    border-radius:20px;
+    padding:40px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+.headline{
+    color:var(--vr-blau);
+    font-size:2rem;
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+.subline{
+    color:#555;
+    font-size:1.1rem;
+    max-width:700px;
+    margin:0 auto 30px;
+    line-height:1.5;
+}
+
+.timer{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:35px;
+}
+
+.unit{
+    background:var(--vr-hell);
+    min-width:140px;
+    padding:20px;
+    border-radius:16px;
+}
+
+.number{
+    font-size:3rem;
+    color:var(--vr-blau);
+    font-weight:bold;
+}
+
+.label{
+    color:#666;
+    margin-top:8px;
+    font-size:0.95rem;
+}
+
+.cta{
+    display:inline-block;
+    background:var(--vr-gelb);
+    color:#003f75;
+    text-decoration:none;
+    padding:16px 30px;
+    border-radius:50px;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.cta:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 16px rgba(0,0,0,.2);
+}
+
+.note{
+    margin-top:15px;
+    font-size:.9rem;
+    color:#777;
+}
+
+@media(max-width:768px){
+    .headline{
+        font-size:1.5rem;
+    }
+
+    .number{
+        font-size:2.2rem;
+    }
+
+    .unit{
+        min-width:110px;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="countdown-box">
+
+    <div class="headline">
+        Nur noch bis zum Jahresende 2026
+    </div>
+
+    <div class="subline">
+        Nutzen Sie die verbleibende Zeit, um Ihre Spar- und Anlageziele
+        für 2026 zu erreichen. Informieren Sie sich jetzt über unsere
+        Möglichkeiten zur Geldanlage.
+    </div>
+
+    <div class="timer">
+        <div class="unit">
+            <div id="days" class="number">0</div>
+            <div class="label">Tage</div>
+        </div>
+
+        <div class="unit">
+            <div id="hours" class="number">0</div>
+            <div class="label">Stunden</div>
+        </div>
+
+        <div class="unit">
+            <div id="minutes" class="number">0</div>
+            <div class="label">Minuten</div>
+        </div>
+
+        <div class="unit">
+            <div id="seconds" class="number">0</div>
+            <div class="label">Sekunden</div>
+        </div>
+    </div>
+
+    <a href="https://www.meine-vrbank.de/privatkunden/geldanlage-und-sparen/produkte.html"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="cta">
+       Geldanlage & Sparen entdecken
+    </a>
+
+    <div class="note">
+        Jetzt informieren und Chancen bis zum Jahresende nutzen.
+    </div>
+
+</div>
+
+<script>
+const targetDate = new Date("2026-12-31T23:59:59").getTime();
+
+function updateCountdown() {
+
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if(distance <= 0){
+        document.querySelector(".timer").innerHTML =
+        "<h2>Das Jahr 2026 ist beendet.</h2>";
+        return;
+    }
+
+    const days = Math.floor(distance / (1000*60*60*24));
+    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+    const seconds = Math.floor((distance % (1000*60)) / 1000);
+
+    document.getElementById("days").innerText = days;
+    document.getElementById("hours").innerText = hours;
+    document.getElementById("minutes").innerText = minutes;
+    document.getElementById("seconds").innerText = seconds;
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
